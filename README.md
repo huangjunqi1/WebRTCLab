@@ -20,6 +20,6 @@
 
 有些文件太大了，比如1080p的视频，仓库里就只放了log文件
 
-欢迎关注[MyGO_AveMujica](https://space.bilibili.com/1459104794?spm_id_from=333.337.0.0)喵！ 欢迎关注[**ANON TOKYO**](https://t.bilibili.com/915096040045019346)谢谢喵！
+欢迎关注[MyGO_AveMujica](https://space.bilibili.com/1459104794?spm_id_from=333.337.0.0)喵！ 欢迎关注[ANON TOKYO](https://t.bilibili.com/915096040045019346)谢谢喵！
 
 ![](video/anon.jpg)
