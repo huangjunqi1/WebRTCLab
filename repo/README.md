@@ -23,7 +23,7 @@ wget https://github.com/OpenNetLab/AlphaRTC/releases/latest/download/alphartc.ta
 docker load -i alphartc.tar.gz
 ```
 
-奇怪的是，使用`From docker registry`与使用`From github release`两种最终结果会有区别，在生成视频后的log文件有一些差距。我们还是选择了`From github release`，可以能够得到更具体的log文件。
+奇怪的是，使用`From docker registry`与使用`From github release`两种最终结果会有区别，在生成视频后的log文件有一些差距。我们还是选择了`From github release`，能够得到更具体的log文件。
 
 #### vmaf和ffmpeg的安装
 事实上，vmaf的安装十分方便，因为官方提供了release。在Windows下，只需要下载其中的exe文件，以及仓库中`model/`下相应的模型即可使用。
@@ -49,7 +49,9 @@ ffmpeg -i xxx.mp4 -s 233x233 -pix_fmt yuv420p yyy.yuv
 
 执行命令
 ```
-docker run -d --rm -v `pwd`/examples/peerconnection/serverless/corpus:/app -w /app --name alphartc alphartc peerconnection_serverless receiver_pyinfer.json
+docker run -d --rm -v `pwd`/examples/peerconnection/serverless/corpus:/app \
+-w /app --name alphartc alphartc peerconnection_serverless receiver_pyinfer.json
+
 docker exec alphartc peerconnection_serverless sender_pyinfer.json
 ```
 在Windows下，这里要用绝对路径，然后能得到`outvideo.yuv`和`webrtc.log`以进行下一步分析
@@ -66,7 +68,9 @@ ffmpeg -i outvideo.y4m -vsync 0 outvideo.yuv -y
 
 执行命令，分别启动本机(sender)与虚拟机(receiver)的docker容器
 ```
-docker run --privileged --network=host -d --rm -v `pwd`/examples/peerconnection/serverless/corpus:/app -w /app --name alphartc alphartc /bin/bash -c "while true; do sleep 10000; done"
+docker run --privileged --network=host \
+-d --rm -v `pwd`/examples/peerconnection/serverless/corpus:/app \
+-w /app --name alphartc alphartc /bin/bash -c "while true; do sleep 10000; done"
 ```
 
 然后在虚拟机执行`docker exec --privileged alphartc peerconnection_serverless receiver_pyinfer.json`，在本机执行`docker exec --privileged alphartc peerconnection_serverless sender_pyinfer.json`，完成后，可以得到`outvideo.yuv`,`webrtc.log`,`webrtc-sender.log`以进行下一步分析。
