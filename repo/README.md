@@ -86,7 +86,7 @@ ffmpeg -f rawvideo -s 233x233 -pix_fmt yuv420p -i yyy.yuv xxx.mp4
     <img src="assets/out.bmp" alt="Second Image" width="320">
 </div>
 
-左：原图(1920x1080)；右：输出图
+左：输入(1920x1080)；右：输出
 
 此外，虽然设置的时间和原视频长度相同都是6秒，但得到的视频还是少了几帧(150变140)
 
